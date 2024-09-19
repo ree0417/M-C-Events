@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M&C Events - Decoration, Catering & Carpentry</title>
+    <link rel="stylesheet" href="M&C.css">
+    
+</head>
+<body>
+    <div id="slideshow">
+        <img src="Logo/M&C.jpg" alt="Slideshow Image 15">
+        <img src="cap/IMG-20240902-WA0074.jpg" class="active" alt="Slideshow Image 1">
+        <img src="IMG/FB_IMG_1725130361224.jpg" alt="Slideshow Image 2">
+        <img src="IMG/FB_IMG_1725130367922.jpg" alt="Slideshow Image 3">
+        <img src="IMG/FB_IMG_1725130394884.jpg" alt="Slideshow Image 4">
+        <img src="IMG/FB_IMG_1725130398641.jpg" alt="Slideshow Image 5">
+        <img src="IMG/273743829_906348373327417_2928226423078862492_n.jpg" alt="Slideshow Image 5">
+        <img src="IMG/FB_IMG_1725130413661.jpg" alt="Slideshow Image 6">
+        <img src="IMG/FB_IMG_1725130420335.jpg" alt="Slideshow Image 7">
+        <img src="IMG/Screenshot_20240901_233156.jpg" alt="Slideshow Image 8">
+        <img src="cap/IMG-20240902-WA0083.jpg" alt="Slideshow Image 9">
+        <img src="cater/IMG-20240902-WA0061.jpg" alt="Slideshow Image 10">
+        <img src="cap/IMG-20240902-WA0070.jpg" alt="Slideshow Image 11">
+        <img src="cap/IMG-20240902-WA0090.jpg" alt="Slideshow Image 12">
+        <img src="cap/IMG-20240902-WA0073.jpg" alt="Slideshow Image 13">
+        <img src="cap/IMG-20240902-WA0065.jpg" alt="Slideshow Image 14">
+    </div>
+
+    <header>
+        <a href="index.html">
+            <img src="Logo/M&C.jpg" alt="M&C Events Logo">
+        </a>
+        <!-- Hamburger Menu Icon -->
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <!-- Navigation Menu -->
+        <nav id="nav-menu">
+            <a href="decor.html">DECOR</a>
+            <a href="carpentry.html">CATERING</a>
+            <a href="carpentry.html">CARPENTRY</a>
+            <a href="steelwork.html">STEELWORK</a>
+            <a href="contact.html">CONTACT US</a>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h1>We Do The Best We Want</h1>
+            <p>Expert Decoration, Catering, and Carpentry Services</p>
+            <a href="#services" class="btn">View Our Services</a>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="service-container">
+            <div class="service">
+                <h3>Decoration</h3>
+                <p>We offer beautiful and customizable decoration services for all types of events.</p>
+            </div>
+            <div class="service">
+                <h3>Catering</h3>
+                <p>Our catering services are top-notch, offering delicious food to satisfy any palate.</p>
+            </div>
+            <div class="service">
+                <h3>Carpentry</h3>
+                <p>Our skilled carpenters create custom furniture and structures for any event.</p>
+            </div>
+            <div class="service">
+                <h3>Steelwork</h3>
+                <p>Our skilled carpenters create custom furniture and structures for any event.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <h2>About us</h2>
+        <div class="portfolio-container">
+            <div class="portfolio-item">
+                <img src="cap/IMG-20240902-WA0083.jpg" alt="carpenters">
+                <p>Our carpentry services combine artistry with precision, delivering exceptional woodwork that transforms spaces. Whether you’re looking for custom cabinets, elegant furniture, or intricate wood paneling, we bring your vision to life with a meticulous eye for detail. Our team of skilled carpenters takes pride in their craftsmanship, ensuring each piece is not only functional but also a work of art. <b>Let us bring warmth, elegance, and craftsmanship to your space with our tailored carpentry services.</b>
+            </div>
+            <div class="portfolio-item">
+                <img src="IMG/FB_IMG_1725130361224.jpg" alt="party decoration">
+                <p>Our party decoration services are designed to turn any celebration into a magical event. Whether it’s a birthday, anniversary, corporate gathering, or themed party, we specialize in creating stunning and immersive environments that leave a lasting impression on your guests.</p>
+            </div>
+            <div class="portfolio-item">
+                <img src="IMG/Screenshot_20240901_233156.jpg" alt="Catering">
+                <p>At <B>M&C Events</B>, our catering services are crafted to deliver a memorable culinary experience tailored to your unique event. Whether you're hosting an intimate gathering or a grand celebration, we bring flavors to life with creativity and precision.</p>
+            </div>
+            <div class="portfolio-item">
+                <img src="steel/IMG-20240902-WA0076.jpg" alt="steelwork">
+                <p>At <B>M&C Events</B>, we specialize in high-quality steelwork, delivering robust, innovative, and sustainable solutions for a wide range of construction and infrastructure projects. With years of experience and a commitment to excellence, we are your trusted partner for all steel fabrication and installation needs.</p>
+    </section>
+
+
+    <footer>
+        <p>&copy; 2024 M&C Events. All rights reserved. Designed by Mr R Ntsanwisi</p> <a href="https://www.facebook.com/profile.php?id=61555957314036&mibextid=ZbWKwL"><img width="45px" height="45px" src="https://img.icons8.com/fluency/48/facebook.png" alt="Facebook"/></a> <a href="https://wa.me/+27713349901?text=greetings%MR%20M&C%20Events,%20I%20would%20like%20to%20inquire%20about%20your%20services"><img width="45px" height="45px" src="https://img.icons8.com/3d-fluency/94/whatsapp.png" alt="WhatsApp"/></a>
+    </footer>
+    
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('#slideshow img');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            showSlide(currentIndex);
+        }
+
+        setInterval(nextSlide, 3000); // Change image every 3 seconds
+
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('open');
+            hamburger.classList.toggle('active'); // Add this line for hamburger icon animation
+        });
+
+        <!-- JavaScript to toggle menu -->
+    
+        function toggleMenu() {
+            var menu = document.getElementById('nav-menu');
+            if (menu.style.display === 'flex') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'flex';
+            }
+        }
+    
+    </script>
+</body>
+</html>

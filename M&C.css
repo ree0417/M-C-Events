@@ -1,0 +1,735 @@
+
+        /* Reset some default browser styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            background-color: #ccccc9;
+        }
+
+        #slideshow img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        #slideshow img.active {
+            opacity: 1;
+        }
+
+        /* Optional: Add a semi-transparent overlay */
+        #slideshow::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* Black overlay with 40% opacity */
+            z-index: 1;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better readability */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header img {
+            height: 60px;
+            cursor: pointer;
+            max-height: 80px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #d4d4d4;
+        }
+
+        nav a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #d4d4d4;
+            transition: width 0.3s;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            z-index: 1;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        .btn {
+            background: #ff6347;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #e5533d;
+        }
+
+        /* Sections */
+        #services, #portfolio, #about, #contact {
+            padding: 50px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-container, .portfolio-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .service, .portfolio-item {
+            flex: 1;
+            margin: 15px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent background for readability */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            max-width: 300px;
+            width: 100%;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        /* Contact Form */
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        form label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #333;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        form button {
+            width: 100%;
+            background: #333;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s ease;
+        }
+
+        form button:hover {
+            background: #555;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            /* Adjust header */
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            /* Hide navigation links by default */
+            nav {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.5); /* Background for mobile menu */
+                position: absolute;
+                top: 60px; /* Adjust based on header height */
+                left: 0;
+                z-index: 1000; /* Ensure it is above other content */
+            }
+
+            nav.open {
+                display: flex; /* Show the menu when hamburger is clicked */
+            }
+
+            nav a {
+                margin: 10px 0;
+                padding: 10px;
+                text-align: center;
+                width: 100%;
+                border-bottom: 1px solid #fff; /* Add a divider between links */
+            }
+
+            nav a:last-child {
+                border-bottom: none; /* Remove border from the last item */
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Further adjustments for very small screens */
+            .hero h1 {
+                font-size: 1.8em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .btn {
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
+
+            form label, form input, form textarea, form button {
+                font-size: 0.9em;
+            }
+
+            nav a {
+                margin: 8px 0;
+            }
+        }
+        .btn-cap {
+            cursor: pointer;
+        }
+
+
+      /* CONTACT INFORMATION */
+       .icon {
+        width: 40px;  /* Adjust the width */
+        height: 40px; /* Adjust the height */
+    }
+
+    .whatsapp-container {
+        text-align: center;
+    }
+
+    .contact-info p, .whatsapp-container p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.contact-info a {
+    color: #333;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive styling for smaller devices */
+@media (max-width: 768px) {
+    .whatsapp-container img {
+        margin-left: 0;
+        max-width: 2px;
+    }
+
+    .contact-info p {
+        font-size: 14px;
+    }
+
+    .whatsapp-container p {
+        font-size: 14px;
+    }
+}
+
+            /* STEELWORK STYLE */
+
+     /* Style for the section */
+     #carpet {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    /* Styling the images */
+    #carpet img {
+        max-height: 300px;
+        width: auto;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+
+    #carpet img:hover {
+        transform: scale(1.05);
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 100;
+        padding-top: 60px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-content {
+        margin: auto;
+        display: block;
+        max-width: 80%;
+        max-height: 80%;
+        border-radius: 10px;
+    }
+
+    .close {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        color: white;
+        font-size: 35px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    /* Style for the section */
+    #food {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    /* Styling the images */
+    #food img {
+        max-height: 300px;
+        width: auto;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+
+    #food img:hover {
+        transform: scale(1.05);
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 100;
+        padding-top: 60px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-content {
+        margin: auto;
+        display: block;
+        max-width: 80%;
+        max-height: 80%;
+        border-radius: 10px;
+    }
+
+    .close {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        color: white;
+        font-size: 35px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    /* DECOCRATION STYLE */
+
+      /* Modal container */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Modal content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+}
+
+/* Zoom in animation */
+.modal-content {
+    animation: zoom 0.6s;
+}
+
+@keyframes zoom {
+    from {transform: scale(0.1)} 
+    to {transform: scale(1)}
+}
+
+/* Close button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+   /* Style for the section */
+   #food {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* Styling the images */
+        #food img {
+            max-height: 300px;
+            width: auto;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        #food img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            padding-top: 60px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+          /* Modal container */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Modal content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+}
+
+/* Zoom in animation */
+.modal-content {
+    animation: zoom 0.6s;
+}
+
+@keyframes zoom {
+    from {transform: scale(0.1)} 
+    to {transform: scale(1)}
+}
+
+/* Close button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+  
+/* CARPENTRY STYLING */
+         /* Style for the section */
+         #carpet {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* Styling the images */
+        #carpet img {
+            max-height: 300px;
+            width: auto;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        #carpet img:hover {
+            transform: scale(1.05);
+        }
+
+        /* WHATSAPP ICON */
+
+        .whatsapp-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            /* margin: 10px 0; */
+            margin: 0 auto;
+
+        }
+    
+        .whatsapp-container a {
+            margin-right: 10px;
+        }
+    
+        .whatsapp-container img.icon {
+            width: 40px;
+            height: 40px;
+        }
+    
+        .whatsapp-container p {
+            margin: 0;
+            font-size: 16px;
+        }
+    
+        /* Responsive for mobile */
+        @media (max-width: 600px) {
+            .whatsapp-container {
+                justify-content: center;
+                text-align: center;
+                flex-direction: column;
+                margin: 0 auto;
+            }
+    
+            .whatsapp-container a {
+                margin-bottom: 5px;
+            }
+    
+            .whatsapp-container img.icon {
+                width: 50px;
+                height: 50px;
+                margin: 0 auto;
+            }
+    
+            .whatsapp-container p {
+                font-size: 18px;
+            }
+        }
+
+        /* Add this to your CSS (M&C.css) */
+.whatsapp-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 20px auto; /* Adjust margin as needed */
+}
+
+.whatsapp-container a {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.whatsapp-container img.icon {
+    width: 45px; /* Adjust width as needed */
+    height: 45px; /* Adjust height as needed */
+}
+
+.whatsapp-container p {
+    font-size: 16px; /* Adjust font size as needed */
+}
+
+/* Ensure the section scales well on smaller devices */
+@media (max-width: 768px) {
+    .whatsapp-container {
+        margin: 15px auto;
+    }
+
+    .whatsapp-container img.icon {
+        width: 40px; /* Adjust for smaller screens */
+        height: 40px;
+    }
+
+    .whatsapp-container p {
+        font-size: 14px;
+    }
+}
+
+ /* Styling the WhatsApp icon */
+ .whatsapp-icon {
+    font-size: 60px;
+    color: #25D366; /* WhatsApp green */
+    text-decoration: none;
+}
+
+
