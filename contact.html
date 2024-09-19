@@ -63,10 +63,7 @@
         <h2>You can email us</h2>
         <form action="https://formspree.io/f/xwpejvap" method="POST">
             <label for="name">Name:</label>
-            <input type="text" id="name" name="Name" placeholder="M&C" required>
-
-            <label for="name">Surname:</label>
-            <input type="text" id="name" name="surname" placeholder="Events" required>
+            <input type="text" id="name" name="Name" placeholder="M&C Events" required>
     
             <label for="phone">Cellphone number:</label>
             <input type="text" id="phone" name="Cellphone Number" placeholder="+27 12 345 6789" required>
@@ -74,19 +71,32 @@
             <label for="email">Email:</label>
             <input type="email" id="email" name="Email" placeholder="EmailAdress@gmail.com" required>
     
-            <label for="province">Province:</label>
-            <select id="province" name="Province" required style="width: 500px; height: 40px;">
-                <option value="" disabled selected>Select your province</option>
-                <option value="Eastern Cape">Eastern Cape</option>
-                <option value="Free State">Free State</option>
-                <option value="Gauteng">Gauteng</option>
-                <option value="KwaZulu-Natal">KwaZulu-Natal</option>
-                <option value="Limpopo">Limpopo</option>
-                <option value="Mpumalanga">Mpumalanga</option>
-                <option value="Northern Cape">Northern Cape</option>
-                <option value="North West">North West</option>
-                <option value="Western Cape">Western Cape</option>
-            </select>
+            <!-- Province Selection -->
+<label for="province">Province:</label>
+<select id="province" name="Province" required style="width: 500px; height: 40px;" onchange="updateCities()">
+    <option value="" disabled selected>Select your province</option>
+    <option value="Eastern Cape">Eastern Cape</option>
+    <option value="Free State">Free State</option>
+    <option value="Gauteng">Gauteng</option>
+    <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+    <option value="Limpopo">Limpopo</option>
+    <option value="Mpumalanga">Mpumalanga</option>
+    <option value="Northern Cape">Northern Cape</option>
+    <option value="North West">North West</option>
+    <option value="Western Cape">Western Cape</option>
+</select>
+
+<!-- City Selection -->
+<label for="city">City:</label>
+<select id="city" name="City" required style="width: 500px; height: 40px;" onchange="updateSuburbs()">
+    <option value="" disabled selected>Select your city</option>
+</select>
+
+<!-- Suburb Selection -->
+<label for="suburb">Suburb:</label>
+<select id="suburb" name="Suburb" required style="width: 500px; height: 40px;">
+    <option value="" disabled selected>Select your suburb</option>
+</select>
     
             <label for="message">Message:</label>
             <textarea id="message" name="Message" placeholder="Message M&C Events" rows="5" required></textarea>
@@ -174,6 +184,174 @@
             navMenu.classList.toggle('open');
             hamburger.classList.toggle('active'); // Add this line for hamburger icon animation
         });
+
+         // Object to store cities and suburbs per province
+    const data = {
+        "Mpumalanga": {
+           "Nelspruit": ["West Acres", "Sonheuwel", "Steiltes", "White River"],
+            "Mbombela": ["KaMagugu", "Mataffin", "Pienaar", "Kabokweni"],
+            "Barberton": ["Fairview", "Emjindini", "Rimer's Creek", "Sheba"],
+            "Sabie": ["Simile", "Mount Anderson", "Harmony Block", "Kitson Street"],
+            "Lydenburg": ["Mashishing", "Kellysville", "Voëlfontein", "Lydenburg South"]
+        },
+
+        "Gauteng": {
+            "Johannesburg": ["Orlando" , "Pimville" , "Diepkloof" ,  "Meadowlands" , "Zola" , "Jabulani" , "Dobsonville", "Sandton", "Randburg" , "Fourways" , "Rosebank" , "Parkhurst" , "Greenside" , "Melville" , "Houghton" , "Dainfern" ,
+            "Dube" , "Bedfordview" , "Kensington" , "Bruma" , "Edenvale" , "Linksfield" , "Modderfontein" ,
+        "Alberton" , "Winchester Hills" , "Glenvista" , "Bassonia" , "Mondeor" , "Rosettenville" , "Roodepoort" , "Weltevreden Park" , "Honeydew"],
+
+            "Pretoria": ["Arcadia", "Sunnyside", "Arcadia", "Muckleneuk" ,  "Wonderboom" ,  "Montana" ,  "Sinoville" , "Pretoria North" , "Hatfield" ,"Lynnwood" ,"Menlo Park" ,"Faerie Glen" ,"Garsfontein" ,"Silver Lakes" ,
+                "Waterkloof" , "Brooklyn" ,"Erasmusrand" ,"Monument Park" ,"Groenkloof" , "Irene" ,"Highveld" ,"Rooihuiskraal" ,"Midstream" ,"Lyttelton" ,"Eldoraigne" ,],
+                
+            "Ekurhuleni": ["Benoni", "Kempton Park", "Boksburg", "Germiston" , "Brakpan" , "Springs" , "Alberton" ,]
+        },
+        "Western Cape": {
+            "Cape Town": ["Claremont", "Sea Point", "Durbanville", "Brackenfell" ,"Kraaifontein" ,"Plattekloof" ,"Goodwood" ,"Kenilworth" ,"Wynberg" ,"Constantia" ,"Meadowridge" ,"Plumstead" ,"Century City" ,"Bellville" ,"Parow" ,"Monte Vista" ,
+                            "Milnerton" ,"Brooklyn" ,"Royal Ascot" ,"Gardens" ,"Tamboerskloof" ,"De Waterkant" ,"Green Point" , "" ,],
+
+            "Stellenbosch": ["Jamestown", "Die Boord", "Idas Valley","Jamestown" ,"Cloetesville" ,"Devon Valley" ,],
+
+            "Paarl": ["Northern Paarl", "Southern Paarl", "Wellington", "Boland Park" ,"Paarl East" ,"Paarl North" ,],
+
+            "George": [ "George Central" , "Fancourt" , "Eden" , "Tamsui" , "Denneoord" , "George South" , "George South" ,],
+
+            "Knysna": ["Knysna Central", "Leisure Isle" , "Brenton-on-Sea" , "Sedgefield" , "Hunter’s Home" , "The Heads" ,],
+
+            "Oudtshoorn": [ "Oudtshoorn Central" , "Calitzdorp" , "De Rust" , "Dysselsdorp" ,],
+
+            "Malmesbury": [ "Malmesbury Central" , "Abbotsdale" , "Riebeek-Kasteel " , "Riebeek West" ,],
+
+            "Ceres": [ "Ceres Central" , "Tulbagh" , "Prince Alfred Hamlet" ,],
+
+            "Caledon": [ "Caledon Central" , "Botrivier " ,]
+        },
+
+        "Limpopo": { 
+            "Polokwane": ["Bendor", "Flora Park", "Fauna Park", "Seshego", "Westenburg"],
+            "Tzaneen": ["Aqua Park", "Arbor Park", "Premier Park", "Fauna Park"],
+            "Thohoyandou": ["Sibasa", "Manini", "Makwarela", "Muledane"],
+            "Mokopane": ["Mahwelereng", "Chroompark", "Ext 12", "Sekgakgapeng"],
+            "Lephalale": ["Onverwacht", "Marapong", "Lephalale Ext 16", "Ellisras"],
+            "phalaborwa": ["Lulekani" , "Namakgale" , "Mashishimale" , "Maseke" , "Makhushane" , "Selwane" , "Vuyelani" ,],
+            "Giyani": ["Dzingidzingi", "Kremetart", "Malamulele", "Mhlava-Willem"],
+            "Bela-Bela": ["Bela-Bela Ext 1", "Warmbaths", "Radium", "Masakhane"],
+            "Musina": ["Beitbridge", "Nancefield", "Musina Ext 5", "Harper"],
+            "Modimolle": ["Phagameng", "Nylstroom", "Modimolle Central", "Bosveldsig"],
+            "Louis Trichardt": ["Eltivillas", "Makhado Park", "New Town", "Mpheni"]
+        },
+        "Eastern Cape": {
+        "Port Elizabeth (Gqeberha)": ["Summerstrand", "Walmer", "New Brighton", "Humewood", "Newton Park"],
+            "East London": ["Beacon Bay", "Gonubie", "Southernwood", "Quigney", "Cambridge"],
+            "Mthatha": ["Northcrest", "Ikwezi", "Ngangelizwe", "Ncambedlana", "Hillcrest"],
+            "Queenstown (Komani)": ["Top Town", "Westbourne", "Victoria Park", "Kingspark", "Townsend"],
+            "Bhisho": ["Zwelitsha", "Bisho Park", "Sweetwaters", "Extension 5"],
+            "Grahamstown (Makhanda)": ["Oatlands", "Rhodes University", "Joza", "Kingswood", "Fingo Village"],
+            "Butterworth": ["Extension 6", "Ibika", "Gcuwa", "Butterworth Central"],
+            "Uitenhage (Kariega)": ["Van Riebeeck Heights", "Fairbridge Heights", "Winterhoek Park", "Kwanobuhle"],
+            "Cradock": ["Bongweni", "Lingelihle", "Cradock Central", "Fish River"],
+            "Graaff-Reinet": ["Adendorp", "Umasizakhe", "Kroonvale", "Graaff-Reinet Central"],
+            "Aliwal North": ["Arboretum", "Joe Gqabi", "Aliwal North Central", "Riverside"],
+            "King William's Town": ["Briedbach", "Dimbaza", "King William's Town Central", "Zwelitsha"],
+            "Mdantsane": ["Nu 1", "Nu 7", "Nu 14", "Nu 16", "Nu 17"]
+        },
+
+        "Northern Cape":{
+                        "Kimberley": ["Monument Heights", "Hadison Park", "Beaconsfield", "Galeshewe", "Royldene"],
+            "Upington": ["Belgravia", "Florapark", "Olyvenhoutsdrift", "Keidebees", "Kalahari Golf Estate"],
+            "Springbok": ["Bergsig", "Nababeep", "Okiep", "Springbok Central"],
+            "Kuruman": ["Wrenchville", "Kuruman West", "Kuruman Central", "Seoding", "Bankara"],
+            "De Aar": ["Britstown", "Nonzwakazi", "Sunset", "Bongweni"],
+            "Postmasburg": ["Boichoko", "New Town", "Postdene", "Kuruman"],
+            "Colesberg": ["Lowryville", "Colesberg Central", "New Ouboks", "Tjoksville"],
+            "Douglas": ["Bongani", "Douglas Central", "Campbell", "Breipaal"],
+            "Hartswater": ["Bonita Park", "Warrenton", "Jan Kempdorp", "Ganspan"],
+            "Kakamas": ["Cillie", "Kakamas Central", "Marchand", "Keimoes"],
+            "Kuruman": ["Wrenchville", "Kuruman West", "Kuruman Central", "Seoding"]
+        },
+        
+        "North West": {
+                    "Rustenburg": ["Cashan", "Waterfall East", "Boitekong", "Tlhabane", "Protea Park"],
+            "Mahikeng": ["Golf View", "Danville", "Unit 6", "Montshiwa", "Lomanyaneng"],
+            "Potchefstroom": ["Mooivallei Park", "Grimbeek Park", "Baillie Park", "Die Bult", "Ikageng"],
+            "Klerksdorp": ["Wilkoppies", "Flamwood", "Doringkruin", "Ellaton", "Neserhof"],
+            "Brits": ["Elandsrand", "Oukasie", "Voëlklip", "Brits Central", "Letlhabile"],
+            "Lichtenburg": ["Kraalkop", "Burgersdorp", "Boikhutso", "Lichtenburg Central", "Skierlik"],
+            "Zeerust": ["Olienhout Park", "Sandvlakte", "Kagiso", "Zeerust Central"],
+            "Vryburg": ["Colridge", "Vryburg Central", "Stella", "Deurwardt", "Huhudi"],
+            "Wolmaransstad": ["Tswelelang", "Wolmaransstad Central", "Witpoort", "Wolmaransstad East"],
+            "Schweizer-Reneke": ["Schweizer-Reneke Central", "Utlwanang", "Mogopela", "Groot Marico"]
+        },
+
+        "KwaZulu-Natal":{
+            "Durban": ["Morningside", "Glenwood", "Umhlanga", "Westville", "Berea"],
+            "Pietermaritzburg": ["Hilton", "Hayfields", "Scottsville", "Pelham", "Bisley"],
+            "Richards Bay": ["Meerensee", "Arboretum", "Veldenvlei", "Brackenham", "Birdswood"],
+            "Empangeni": ["Fairview", "Granite Hill", "Nyala Park", "Kildare", "Old Mill"],
+            "Newcastle": ["Amajuba Park", "Barry Hertzog Park", "Sunny Ridge", "Hutten Heights", "Ncandu Park"],
+            "Port Shepstone": ["Uvongo", "Shelly Beach", "Margate", "Ramsgate", "Sea Park"],
+            "Ballito": ["Salt Rock", "Shakas Rock", "Zimbali", "Simbithi Eco Estate", "Ballito Central"],
+            "Howick": ["Merrivale", "Howick West", "Birnamwood", "Amber Valley", "Howick North"],
+            "Ladysmith": ["Egerton", "Acaciaville", "Observation Hill", "Aloe Park", "Limit Hill"],
+            "Stanger": ["KwaDukuza", "Melville", "Oceanview", "Stanger Manor", "Gledhow"],
+            "Mtubatuba": ["Riverview", "Monzi", "St Lucia", "Mtubatuba Central"]
+        },
+
+        "Free State":{
+                    "Bloemfontein": ["Langenhoven Park", "Fichardt Park", "Willows", "Universitas", "Heuwelsig"],
+            "Welkom": ["Riebeeckstad", "Bedelia", "Dagbreek", "Welkom Central", "Naudeville"],
+            "Sasolburg": ["Vaalpark", "Sasolburg Central", "Zamdela", "Meulpark", "Parys"],
+            "Bethlehem": ["La Provence", "Panorama", "Bohlokong", "Bethlehem Central", "Mooirivier"],
+            "Kroonstad": ["Uitsig", "Elandia", "Morewag", "Brentpark", "Maokeng"],
+            "Phuthaditjhaba": ["Witsieshoek", "Makwane", "Phuthaditjhaba Central", "Mabolela", "Tsheseng"],
+            "Virginia": ["Harmony", "Meloding", "Virginia Central", "Hennenman", "Wesselsbron"],
+            "Parys": ["Vaal de Grace", "Parys Central", "Vredefort", "Tumahole", "Rosashof"],
+            "Harrismith": ["Bergsig", "Wilgepark", "Westonaria", "Tshiame", "Harrismith Central"],
+            "Ficksburg": ["Ficksburg Central", "Clocolan", "Meqheleng", "Fouriesburg", "Caledon Park"]
+        }
+        
+        // Add more provinces, cities, and suburbs here
+    };
+
+    // Function to update the city dropdown based on selected province
+    function updateCities() {
+        const province = document.getElementById('province').value;
+        const citySelect = document.getElementById('city');
+        const suburbSelect = document.getElementById('suburb');
+
+        // Clear current options
+        citySelect.innerHTML = '<option value="" disabled selected>Select your city</option>';
+        suburbSelect.innerHTML = '<option value="" disabled selected>Select your suburb</option>';
+
+        // If a valid province is selected, populate cities
+        if (data[province]) {
+            Object.keys(data[province]).forEach(city => {
+                const option = document.createElement('option');
+                option.value = city;
+                option.textContent = city;
+                citySelect.appendChild(option);
+            });
+        }
+    }
+
+    // Function to update the suburb dropdown based on selected city
+    function updateSuburbs() {
+        const province = document.getElementById('province').value;
+        const city = document.getElementById('city').value;
+        const suburbSelect = document.getElementById('suburb');
+
+        // Clear current suburb options
+        suburbSelect.innerHTML = '<option value="" disabled selected>Select your suburb</option>';
+
+        // If a valid city is selected, populate suburbs
+        if (data[province] && data[province][city]) {
+            data[province][city].forEach(suburb => {
+                const option = document.createElement('option');
+                option.value = suburb;
+                option.textContent = suburb;
+                suburbSelect.appendChild(option);
+            });
+        }
+    }
     </script>
 </body>
 </html>
