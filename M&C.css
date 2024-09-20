@@ -134,6 +134,7 @@
             position: relative;
             z-index: 1;
             padding: 0 20px;
+            transition: 5s;
         }
 
         .hero h1 {
@@ -147,8 +148,8 @@
         }
 
         .btn {
-            background: #ff6347;
-            color: #fff;
+            background:#FFD700;
+            color: #ffffff;
             padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
@@ -156,7 +157,7 @@
         }
 
         .btn:hover {
-            background: #e5533d;
+            background: #ffd9009d;
         }
 
         /* Sections */
