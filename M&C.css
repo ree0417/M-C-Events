@@ -247,6 +247,7 @@
             header {
                 flex-direction: column;
                 align-items: flex-start;
+                    max-width: 600px;
             }
 
             /* Hide navigation links by default */
