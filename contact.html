@@ -3,161 +3,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M&C Events - Decoration,Steelwork Catering & Carpentry</title>
-    <link rel="stylesheet" href="M&C.css">   
+    <title>Contact-info</title>
+    <link rel="stylesheet" href="M&C.css">
 </head>
 
-<body>
-        <!-- Your slideshow images -->
-        <div id="slideshow">
-            <img src="Logo/M&C.jpg" alt="Slideshow Image 7">
-            <img src="cap/IMG-20240902-WA0074.jpg" class="active" alt="Slideshow Image 1">
-            <img src="IMG/FB_IMG_1725130361224.jpg" alt="Slideshow Image 2">
-            <img src="IMG/FB_IMG_1725130367922.jpg" alt="Slideshow Image 3">
-            <img src="IMG/FB_IMG_1725130394884.jpg" alt="Slideshow Image 4">
-            <img src="IMG/FB_IMG_1725130398641.jpg" alt="Slideshow Image 5">
-            <img src="IMG/FB_IMG_1725130413661.jpg" alt="Slideshow Image 6">
-            <img src="IMG/273743829_906348373327417_2928226423078862492_n.jpg" alt="Slideshow Image 5">
-            <img src="IMG/FB_IMG_1725130420335.jpg" alt="Slideshow Image 7">
-            <img src="IMG/Screenshot_20240901_233156.jpg" alt="Slideshow Image 8">
-            <img src="cap/IMG-20240902-WA0083.jpg" alt="Slideshow Image 9">
-            <img src="cater/IMG-20240902-WA0061.jpg" alt="Slideshow Image 10">
-            <img src="cap/IMG-20240902-WA0070.jpg" alt="Slideshow Image 11">
-            <img src="cap/IMG-20240902-WA0090.jpg" alt="Slideshow Image 12">
-            <img src="cap/IMG-20240902-WA0073.jpg" alt="Slideshow Image 13">
-            <img src="cap/IMG-20240902-WA0065.jpg" alt="Slideshow Image 14">
-        </div>
-    
-    <header>
-        <!-- Header content -->
-        <a href="index.html">
-            <img src="Logo/M&C.jpg" alt="M&C Events Logo">
-        </a>
-        <!-- Hamburger Menu Icon -->
-        <div class="hamburger" id="hamburger">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <!-- Navigation Menu -->
-         <!-- Navigation Menu -->
-         <nav id="nav-menu">
-            <a href="decor.html">DECOR</a>
-            <a href="catering.html">CATERING</a>
-            <a href="carpentry.html">CARPENTRY</a>
-            <a href="steelwork.html">STEELWORK</a>
-            <a href="contact.html"style="color: #dac612;">CONTACT US</a>
-        </nav>
-    </header>
+<!-- Additional styling for responsiveness and hover effects -->
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f1f1f1;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
 
-    <section id="home">
-        <div class="hero">
-            <h1> Welcome to M&C Events Contact Info!</h1>
-            <p>Click on the button below to access our contact info</p>
-            <a href="#contact" class="btn">View Our Contact Details</a>
-        </div>
-    </section>
+    a {
+        text-decoration: none;
+    }
 
-<div style="background-color: rgb(199, 204, 204);">
-    <section id="contact">
-        <h2>You can email us</h2>
-        <form action="https://formspree.io/f/xwpejvap" method="POST">
-            <label for="name">Names:</label>
-            <input type="text" id="name" name="Name" placeholder="M&C" required>
+    /* Button Hover Effect */
+    button:hover {
+        background-color: #4f758f;
+    }
 
-            <label for="name">Surname</label>
-            <input type="text" id="name" name="Name" placeholder="Events" required>
-    
-            <label for="phone">Cellphone number:</label>
-            <input type="text" id="phone" name="Cellphone Number" placeholder="+27 12 345 6789" required>
-    
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="Email" placeholder="EmailAdress@gmail.com" required>
-    
-            <!-- Province Selection -->
-<label for="province">Province:</label>
-<select id="province" name="Province" required style="width: 500px; height: 40px;" onchange="updateCities()">
-    <option value="" disabled selected>Select your province</option>
-    <option value="Eastern Cape">Eastern Cape</option>
-    <option value="Free State">Free State</option>
-    <option value="Gauteng">Gauteng</option>
-    <option value="KwaZulu-Natal">KwaZulu-Natal</option>
-    <option value="Limpopo">Limpopo</option>
-    <option value="Mpumalanga">Mpumalanga</option>
-    <option value="Northern Cape">Northern Cape</option>
-    <option value="North West">North West</option>
-    <option value="Western Cape">Western Cape</option>
-</select>
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .contact-box {
+            flex-direction: column;
+        }
 
-<!-- City Selection -->
-<label for="city">City:</label>
-<select id="city" name="City" required style="width: 500px; height: 40px;" onchange="updateSuburbs()">
-    <option value="" disabled selected>Select your city</option>
-</select>
+        .contact-left, .contact-right {
+            flex-basis: 100%;
+        }
 
-<!-- Suburb Selection -->
-<label for="suburb">Suburb:</label>
-<select id="suburb" name="Suburb" required style="width: 500px; height: 40px;">
-    <option value="" disabled selected>Select your suburb</option>
-</select>
+        .input-row, .input-row2 {
+            flex-direction: column;
+        }
+
+        .input-group {
+            width: 100%;
+        }
+    }
+
+     /* General Styles */
+     header {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better readability */
+        padding: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Hamburger Menu Icon */
+    .hamburger-menu {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+    }
+
+    .hamburger-menu div {
+        width: 30px;
+        height: 3px;
+        background-color: white;
+        margin: 5px 0;
+    }
+
+    /* Navigation Menu (hidden by default) */
+    #nav-menu {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        flex-direction: column;
+        width: 200px;
+    }
+
+    #nav-menu a {
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #e5c9c9;
+    }
+
+    #nav-menu a:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    /* Show Menu when open class is added */
+    #nav-menu.open {
+        display: flex;
+    }
+
+     /* Mobile Specific Styles */
+     @media (max-width: 768px) {
+        header {
+            flex-direction: row;
+            padding: 10px;
+        }
+
+        .hamburger-menu {
+            display: flex;
+        }
+
+        #nav-menu {
+            top: 50px;
+            width: 100%;
+        }
+
+        .menu a {
+            padding: 15px;
+            font-size: 18px;
+        }
+    }
+</style>
     
-            <label for="message">Message:</label>
-            <textarea id="message" name="Message" placeholder="Message M&C Events" rows="5" required></textarea>
-    
-            <button type="submit">Submit Message</button>
-        </form>
-    </section>
-    
-    
-    <section id="contact">
-        <h2>Contact Details</h2>
-        <div class="contact-info">
-            <p>Moses Ngobemi</p>
-            <p><a href="tel:+27791654540">+27 79 165 4540</a></p>
-            <p>Califonia Ngobeni</p>
-            <p><a href="tel:+27652278225">+27 65 227 8225</a></p>
-            <p>Email Address: <a href="mailto:Jeanmaceth@gmail.com">Jeanmaceth@gmail.com</a></p>
-        </div>
-        <!-- <div class="whatsapp-icon" style="margin: 0 auto;"> -->
-            <a href="https://wa.me/+27791654540" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon" style="width:50px; height:50px;">
-            </a>
-            <p>WhatsApp +27 79 165 4540</p>
-            
-        <!-- </div> -->
-    
-        <!-- Facebook Icon with a link -->
-    <a href="https://web.facebook.com/profile.php?id=100071658617268&sk=mentions" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Icon" style="width:50px; height:50px;">
-    </a>
-        <p>For Facebook, click the icon above</p>
-    </section>
-    
+  <!-- Your slideshow images -->
+  <div id="slideshow">
+    <img src="Logo/M&C.jpg" alt="Slideshow Image 7">
+    <img src="cap/IMG-20240902-WA0074.jpg" class="active" alt="Slideshow Image 1">
+    <img src="IMG/FB_IMG_1725130361224.jpg" alt="Slideshow Image 2">
+    <img src="IMG/FB_IMG_1725130367922.jpg" alt="Slideshow Image 3">
+    <img src="IMG/FB_IMG_1725130394884.jpg" alt="Slideshow Image 4">
+    <img src="IMG/FB_IMG_1725130398641.jpg" alt="Slideshow Image 5">
+    <img src="IMG/FB_IMG_1725130413661.jpg" alt="Slideshow Image 6">
+    <img src="IMG/273743829_906348373327417_2928226423078862492_n.jpg" alt="Slideshow Image 5">
+    <img src="IMG/FB_IMG_1725130420335.jpg" alt="Slideshow Image 7">
+    <img src="IMG/Screenshot_20240901_233156.jpg" alt="Slideshow Image 8">
+    <img src="cap/IMG-20240902-WA0083.jpg" alt="Slideshow Image 9">
+    <img src="cater/IMG-20240902-WA0061.jpg" alt="Slideshow Image 10">
+    <img src="cap/IMG-20240902-WA0070.jpg" alt="Slideshow Image 11">
+    <img src="cap/IMG-20240902-WA0090.jpg" alt="Slideshow Image 12">
+    <img src="cap/IMG-20240902-WA0073.jpg" alt="Slideshow Image 13">
+    <img src="cap/IMG-20240902-WA0065.jpg" alt="Slideshow Image 14">
 </div>
 
-<h2 style="text-align: center;">Our Location</h2>
-<div class="map-container" style="width: 100%; max-width: 800px; margin: 0 auto;">
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d597.1731595430613!2d31.0889782!3d-23.8744032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ec3651fe616be77%3A0x310e76acf14689da!2sTabernacle+of+revelation+church!5e0!3m2!1sen!2sza!4v1694788824172!5m2!1sen!2sza"
-      width="100%"
-      height="450"
-      style="border:0;"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
+<header>
+<!-- Header content -->
+<a href="index.html">
+    <img src="Logo/M&C.jpg" alt="M&C Events Logo">
+</a>
+ <!-- Hamburger Menu Icon -->
+ <div class="hamburger-menu" id="hamburger"  onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
 </div>
+<!-- Navigation Menu -->
+<!-- Navigation Menu -->
+<nav id="nav-menu" class="menu">
+    <a href="decor.html">DECOR</a>
+    <a href="catering.html">CATERING</a>
+    <a href="carpentry.html">CARPENTRY</a>
+    <a href="steelwork.html">STEELWORK</a>
+    <a href="contact.html"style="color: #dac612;">CONTACT US</a>
+</nav>
+</header>
 
-
-    </div>
+<section id="home">
+<div class="hero">
+    <h1> Welcome to M&C Events Contact Info!</h1>
+    <p>Click on the button below to access our contact info</p>
+    <a href="#contact" class="btn">View Our Contact Details</a>
+</div>
 </section>
+<!-- Contact Us Section -->
+<body style="background-color: #b4b2b2;">
+    <div class="container" style="padding: 20px;">
+        <h1 style="text-align: center; color: #2c3e50;">Contact Us</h1>
+        <h4 style="text-align: center; color: #34495e;">You Can Quickly Get In Touch With Us On The Following Details Below</h4>
+
+        <div class="contact-box" style="display: flex; flex-wrap: wrap; justify-content: space-between; padding: 20px; border-radius: 10px;">
+            
+            <!-- Contact Details -->
+            <div class="contact-left" style="flex-basis: 45%; padding: 20px; background-color: #6c7a7ae5; border-radius: 10px;">
+                <h2 style="color: #2c3e50;">Contact Details</h2>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                    <tr>
+                        <td style="font-weight: bold;">Email Address:</td>
+                        <td><a href="mailto:Jeanmaceth@gmail.com" >Jeanmaceth@gmail.com</a></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Moses Ngobemi:</td>
+                        <td><a href="tel:+27791654540">+27 79 165 4540</a></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">California Ngobemi:</td>
+                        <td><a href="tel:+27652278225" >+27 65 227 8225</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon" style="width:30px; height:30px;">
+                        </td>
+                        <td><a href="https://wa.me/+27791654540" target="_blank" >+27 79 165 4540 </a>| <a href="https://wa.me/+27652278225">+27 65 227 8225</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://web.facebook.com/profile.php?id=100071658617268&sk=mentions" target="_blank">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Icon" style="width:30px; height:30px;">
+                        </a></td>
+                        <td><a href="https://web.facebook.com/profile.php?id=100071658617268&sk=mentions" target="_blank" style="color: #3498db;">M&C Decoration and Catering services</a></td>
+                    </tr>
+                </table>
+            </div>
+                    
+            <!-- Contact Form -->
+            <div class="contact-right" style="flex-basis: 45%; padding: 20px; background-color: #8b7979; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+                <section id="contact">
+                    <h2 style="color: #2c3e50;">You Can Email Us</h2>
+                    <form action="https://formspree.io/f/xwpejvap" method="POST" style="margin-top: 20px;">
+                        
+                        <div class="input-row" style="display: flex; justify-content: space-between;">
+                            <div class="input-group" style="flex-basis: 48%;">
+                                <label for="name">Name:</label>
+                                <input type="text" id="name" name="Name" placeholder="M&C" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                            </div>
+                            <div style="flex-basis: 48%;">
+                                <label for="surname">Surname:</label>
+                                <input type="text" id="surname" name="Surname" placeholder="Events" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                            </div>
+                        </div>
+
+                        <div class="input-row" style="display: flex; justify-content: space-between; margin-top: 15px;">
+                            <div class="input-group" style="flex-basis: 48%;">
+                                <label for="phone">Cellphone Number:</label>
+                                <input type="text" id="phone" name="Cellphone Number" placeholder="+27 12 345 6789" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                            </div>
+                            <div style="flex-basis: 48%;">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="Email" placeholder="EmailAdress@gmail.com" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                            </div>
+                        </div>
+                        
+                        <div class="input-row" style="display: flex; justify-content: space-between; margin-top: 15px;">
+                            <div class="input-group" style="flex-basis: 48%;">
+                                <label for="province">Province:</label>
+                                <select id="province" name="Province" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" onchange="updateCities()">
+                                    <option value="" disabled selected>Select your province</option>
+                                    <option value="Eastern Cape">Eastern Cape</option>
+                                    <option value="Free State">Free State</option>
+                                    <option value="Gauteng">Gauteng</option>
+                                    <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+                                    <option value="Limpopo">Limpopo</option>
+                                    <option value="Mpumalanga">Mpumalanga</option>
+                                    <option value="Northern Cape">Northern Cape</option>
+                                    <option value="North West">North West</option>
+                                    <option value="Western Cape">Western Cape</option>
+                                </select>
+                            </div>
+                            <div style="flex-basis: 48%;">
+                                <label for="city">City:</label>
+                                <select id="city" name="City" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" onchange="updateSuburbs()">
+                                    <option value="" disabled selected>Select your city</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-row2" style="margin-top: 15px;">
+                            <label for="suburb">Suburb:</label>
+                            <select id="suburb" name="Suburb" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                                <option value="" disabled selected>Select your suburb</option>
+                            </select>
+                        </div>
+                        
+                        <div style="margin-top: 15px;">
+                            <label for="message">Message:</label>
+                            <textarea id="message" name="Message" placeholder="Message M&C Events" rows="5" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+                        </div>
+
+                        <div style="text-align: right; margin-top: 15px;">
+                            <button type="submit" style="background-color:#ffd9009d; color: rgb(0, 0, 0); padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; ">Submit Message</button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+
+        <h2 style="text-align: center; color: #2c3e50; margin-top: 30px;">Our Location</h2>
+        <div class="map-container" style="width: 100%; max-width: 800px; margin: 20px auto;">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d597.1731595430613!2d31.0889782!3d-23.8744032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ec3651fe616be77%3A0x310e76acf14689da!2sTabernacle+of+revelation+church!5e0!3m2!1sen!2sza!4v1694788824172!5m2!1sen!2sza"
+              width="100%"
+              height="450"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+</body>
+
+
 
 
 <footer>
-    <p>&copy; 2024 M&C Events. All rights reserved. Designed by Mr R Ntsanwisi</p> <a href="https://www.facebook.com/profile.php?id=61555957314036&mibextid=ZbWKwL"><img width="45px" height="45px" src="https://img.icons8.com/fluency/48/facebook.png" alt="Facebook"/></a> <a href="https://wa.me/+27713349901?text=greetings MR%20M&C%20Events,%20I%20would%20like%20to%20inquire%20about%20your%20services"><img width="45px" height="45px" src="https://img.icons8.com/3d-fluency/94/whatsapp.png" alt="WhatsApp"/></a>
+    <p>&copy; 2024 M&C Events| Company Number: 202425493007 | All rights reserved | Designed by Mr R Ntsanwisi</p> <a href="https://www.facebook.com/profile.php?id=61555957314036&mibextid=ZbWKwL"><img width="45px" height="45px" src="https://img.icons8.com/fluency/48/facebook.png" alt="Facebook"/></a> <a href="https://wa.me/+27713349901?text=greetings MR%20M&C%20Events,%20I%20would%20like%20to%20inquire%20about%20your%20services"><img width="45px" height="45px" src="https://img.icons8.com/3d-fluency/94/whatsapp.png" alt="WhatsApp"/></a>
 </footer>
 
     <script>
+
+        
+
         // Slideshow Functionality
         let currentIndex = 0;
         const slides = document.querySelectorAll('#slideshow img');
