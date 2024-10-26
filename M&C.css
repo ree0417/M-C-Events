@@ -400,3 +400,28 @@ footer {
         height: 35px;
     }
 }
+
+/* Style for the scroll-up button */
+     #scrollUp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #ffd9009d;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 24px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+        
+        #scrollUp.show {
+            opacity: 1;
+        }
