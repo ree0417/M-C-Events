@@ -310,6 +310,25 @@ function openModal(src) {
         video.msRequestFullscreen();
     }
 }
+
+         // Show/hide button based on scroll position
+        const scrollUpButton = document.getElementById("scrollUp");
+
+        window.onscroll = () => {
+            if (window.scrollY > 300) {
+                scrollUpButton.classList.add("show");
+            } else {
+                scrollUpButton.classList.remove("show");
+            }
+        };
+
+        // Scroll to top function
+        scrollUpButton.onclick = () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        };
     </script>
 </body>
 </html>
