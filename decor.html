@@ -240,7 +240,9 @@
         <footer>
             <p>&copy; 2024 M&C Events| Company Number: 202425493007 | All rights reserved | Designed by Mr R Ntsanwisi</p> <a href="https://www.facebook.com/profile.php?id=61555957314036&mibextid=ZbWKwL"><img width="45px" height="45px" src="https://img.icons8.com/fluency/48/facebook.png" alt="Facebook"/></a> <a href="https://wa.me/+27713349901?text=greetings MR%20M&C%20Events,%20I%20would%20like%20to%20inquire%20about%20your%20services"><img width="45px" height="45px" src="https://img.icons8.com/3d-fluency/94/whatsapp.png" alt="WhatsApp"/></a>
         </footer>
-    
+
+        <!-- Scroll-up arrow button -->
+<button id="scrollUp">&#8679;</button>
         <!-- Add the following script at the end of your body tag -->
         <script>
              let currentIndex = 0;
@@ -327,6 +329,25 @@ function openModal(src) {
             navMenu.classList.toggle('open');
             hamburger.classList.toggle('active'); // Add this line for hamburger icon animation
         });
+
+             // Show/hide button based on scroll position
+        const scrollUpButton = document.getElementById("scrollUp");
+
+        window.onscroll = () => {
+            if (window.scrollY > 300) {
+                scrollUpButton.classList.add("show");
+            } else {
+                scrollUpButton.classList.remove("show");
+            }
+        };
+
+        // Scroll to top function
+        scrollUpButton.onclick = () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        };
         </script>
     </body>
     </html>
